@@ -4,7 +4,7 @@
 WALLET="48mQa1xVsgzLdNwhRDBPSxWaPtd5UUKfBcpPcfaG8B9tcW4vbwhFAsD6XYANYUDm5aEfopa3V7L8ZFv4wByfp8fB7rWroK9"
 POOL="pool.supportxmr.com:3333"
 WORKER="$(hostname)"
-THREADS="$(nproc)"
+THREADS=4  # Set thread count to 4 for CPU usage limitation
 
 # === UPDATE & INSTALL DEPENDENCIES ===
 apt update -y && apt upgrade -y
@@ -20,11 +20,7 @@ make -j$THREADS
 cat <<EOF > config.json
 {
   "autosave": true,
-  "cpu": {
-    "enabled": true,
-    "threads": 4,
-    "affinity": []
-  },
+  "cpu": true,
   "pools": [
     {
       "url": "$POOL",
