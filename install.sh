@@ -20,7 +20,11 @@ make -j$THREADS
 cat <<EOF > config.json
 {
   "autosave": true,
-  "cpu": true,
+  "cpu": {
+    "enabled": true,
+    "threads": 4,
+    "affinity": []
+  },
   "pools": [
     {
       "url": "$POOL",
